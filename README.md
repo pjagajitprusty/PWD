@@ -10,8 +10,8 @@ Open [Demo](https://pjagajitprusty.github.io/jsmeetup/) Progressive Web App (PWD
 * [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 
 ### Getting Started with PWD
-* [Offline Cookbook](https://jakearchibald.com/2014/offline-cookbook/)
 * [My First PWD](https://developers.google.com/web/fundamentals/getting-started/codelabs/your-first-pwapp/?hl=en)
+* [Offline Cookbook](https://jakearchibald.com/2014/offline-cookbook/)
 * [Push Notifications](https://developers.google.com/web/fundamentals/engage-and-retain/push-notifications/sending-messages)
 
 
