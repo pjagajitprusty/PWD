@@ -1,6 +1,6 @@
 // Register Service Worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./service-worker.js',{scope : '/jsmeetup'}).then(function(registration) {
+  navigator.serviceWorker.register('./service-worker.js',{scope : '/jsmeetup/'}).then(function(registration) {
     // Registration was successful
     console.log('ServiceWorker registration successful with scope: ', registration.scope);
   }).catch(function(err) {
