@@ -15,7 +15,7 @@ var filesToCache = [
   './', './index.html',
   './css/all.css', './css/material.min.css',
   './js/all.js', './js/material.min.js',
-  './images/service-worker-1.png','./images/service-worker-2.png','./images/service-worker-3.png',
+  
 ];
 
 self.addEventListener('install', function(e) {
