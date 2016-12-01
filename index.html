@@ -6,10 +6,78 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JS MeetUP PWA</title>
   <link rel="stylesheet" type="text/css" href="css/all.css">
+  <link rel="stylesheet" type="text/css" href="css/material.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-  Hello
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Service Worker</span>
+        <!-- Add spacer, to align navigation to the right -->
+        <div class="mdl-layout-spacer"></div>
+        <!-- Navigation. We hide it in small screens. -->
+        <nav class="mdl-navigation mdl-layout--large-screen-only">
+          <a class="mdl-navigation__link" href="https://www.html5rocks.com/en/tutorials/workers/basics/" target="_blank">Web Worker</a>
+          <a class="mdl-navigation__link" href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" target="_blank">Service Worker</a>
+          <a class="mdl-navigation__link" href="https://jakearchibald.com/2014/offline-cookbook/" target="_blank">Offline Cookbook</a>
+          <a class="mdl-navigation__link" href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank">App Cache</a>
+        </nav>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link" href="https://www.html5rocks.com/en/tutorials/workers/basics/" target="_blank">Web Worker</a>
+        <a class="mdl-navigation__link" href="https://developers.google.com/web/fundamentals/getting-started/primers/service-workers" target="_blank">Service Worker</a>
+        <a class="mdl-navigation__link" href="https://jakearchibald.com/2014/offline-cookbook/" target="_blank">Offline Cookbook</a>
+        <a class="mdl-navigation__link" href="http://alistapart.com/article/application-cache-is-a-douchebag" target="_blank">App Cache</a>
+      </nav>
+    </div>
+    <main class="mdl-layout__content">
+      <div class="page-content">
+        <div style="text-align: center;">
+          <h1>Service Worker</h1>
+          <h6 style="width: 70%; margin: auto; ">
+            Service workers essentially act as proxy servers that sit between web applications, and the browser and network (when available). They are intended to (amongst other things) enable the creation of effective offline experiences, intercepting network requests and taking appropriate action based on whether the network is available and updated assets reside on the server. They will also allow access to push notifications and background sync APIs.
+          </h6>
+          <h1 style="text-align: center">
+            <img src="./images/service-worker-1.png" alt="" width="600"/>
+            <img src="./images/service-worker-2.png" alt="" width="600"/>
+          </h1>
+        </div>
+        <div>
+          <h3 style="text-align:center">Service Worker Life Cycle</h3>
+          <p>To install a service worker for your site, you need to register it, which you do in your page's JavaScript. Registering a service worker will cause the browser to start the service worker install step in the background.</p>
+          <p>Typically during the install step, you'll want to cache some static assets. If all the files are cached successfully, then the service worker becomes installed. If any of the files fail to download and cache, then the install step will fail and the service worker won't activate (i.e. won't be installed). If that happens, don't worry, it'll try again next time. But that means if it does install, you know you've got those static assets in the cache.</p>
+          <p>When we're installed, the activation step will follow and this is a great opportunity for handling any management of old caches, which we'll cover during the service worker update section.</p>
+          <p>After the activation step, the service worker will control all pages that fall under its scope, though the page that registered the service worker for the first time won't be controlled until it's loaded again. Once a service worker is in control, it will be in one of two states: either the service worker will be terminated to save memory, or it will handle fetch and message events that occur when a network request or message is made from your page.</p>
+          <p style="text-align:center">
+            <img src="./images/service-worker-3.png" width="500" style="margin:20px;"/>
+            <img src="./images/sw-lifecycle.png" width="500" />
+          </p>
+        </div>
+        <div>
+            <h2>Caching Strategy (Cache then Network)</h2>
+            <h3>Making the requests:</h3>
+            <p>The app needs to kick off two asynchronous requests, one to the cache and one to the network. The app uses the caches object available in window to access the cache and retrieve the latest data. This is an excellent example of progressive enhancement as the caches object may not be available in all browsers, and if it's not the network request should still work.</p>
+            <p>To do this, we need to:</p>
+            <ol>
+              <li>Check if the caches object is available in the global window object.</li>
+              <li>Request data from the cache.</li>
+              <li>If the server request is still outstanding, update the app with the cached data.</li>
+              <li>Request data from the server.</li>
+              <li>Save the data for quick access later.</li>
+              <li>Update the app with the fresh data from the server.</li>
+            </ol>
+        </div>
 
+      </div>
+    </main>
+  </div>
+  <script src="js/material.min.js"></script>
   <script src="js/all.js"></script>
+  <script src="./service-worker.js"></script>
 </body>
 </html>
