@@ -1,9 +1,9 @@
 # JS Meetup
 ## Progressive Web App
 
-This is a sample app to understand the basics of Progressive Web App. It has service-worker file which caches the required static files and helps making the website offline. </br>
+This is a sample app to understand the basics of Progressive Web App. It uses the power of [Service Worker](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and helps making the website go offline. </br>
 
-Open [Demo](https://pjagajitprusty.github.io/jsmeetup/) web app. Once it's loaded, turn off the network and reload again. The page should successfully load. Feeling Excited??? Let's start learning ....</br>
+Open [Demo](https://pjagajitprusty.github.io/jsmeetup/) Progressive Web App (PWD). Once it's loaded, turn off the network and reload again. The page should successfully load. Feeling Excited??? Let's start learning....</br>
 
 ### Prerequisite Knowledge.
 * [JavaScript Promises](https://developers.google.com/web/fundamentals/getting-started/primers/promises)
