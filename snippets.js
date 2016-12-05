@@ -1,3 +1,23 @@
+// Promise Example
+console.log('Going to execute promise')
+var p = new Promise(function(resolve, reject){
+  console.log('Inside Promise')
+  setTimeout(function(){
+    console.log('Going to resolve Promise')
+    reject('3s crossed')
+  })
+  console.log('Still Inside Promise and not resolved yet')
+})
+p.then(function(res){
+  console.log('Promise resolved with value', res)
+})
+.catch(function(e){
+  console.log('Promise rejected with value', e)
+})
+console.log('Async code is executed')
+
+
+// Service Worker Snippets
 self.addEventListener('fetch', function(event) {
   event.respondWith(
     caches.match(event.request).then(function(resp) {
