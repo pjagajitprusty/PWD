@@ -1,4 +1,3 @@
-# JS Meetup
 ## Progressive Web App
 
 This is a sample app to understand the basics of Progressive Web App. It uses the power of [Service Worker](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and helps making the website go offline. </br>
