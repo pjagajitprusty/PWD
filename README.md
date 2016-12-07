@@ -1,9 +1,12 @@
-## Progressive Web App
+## Progressive Website Development
+PWD is a boilerplate to get started with developing a Progressive Web Application. It uses the power of [Service Worker](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) to implement dynamic caching mechanism thus making the website go offline.
 
-This is a sample app to understand the basics of Progressive Web App. It uses the power of [Service Worker](https://developer.mozilla.org/en/docs/Web/API/Service_Worker_API) and helps making the website go offline. </br>
+Open [Demo](https://pjagajitprusty.github.io/PWD/) Progressive Web App which uses PWD. Once it's loaded, turn off the network and reload again. The page should successfully load in offline mode. Feeling Excited??? Let's start learning....</br>
 
-Open [Demo](https://pjagajitprusty.github.io/PWD/) Progressive Web App (PWD). Once it's loaded, turn off the network and reload again. The page should successfully load in offline mode. Feeling Excited??? Let's start learning....</br>
+Go through `service-worker.js` file, that has proper comments with step by step approach to register service worker, caching static files and implementing dynamic caching by handling each network request. `snippets.js` File is added which has detailed explanation for all kinds of dynamic caching strategies and a brief explanation about JavaScript **Promises**.
 
+`Very soon Push Notifications support will be added to it with detailed explanation.
+`
 ### Prerequisite Knowledge.
 * [JavaScript Promises](https://developers.google.com/web/fundamentals/getting-started/primers/promises)
 * [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
