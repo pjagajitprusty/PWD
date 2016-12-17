@@ -1,22 +1,3 @@
-// Promise Example
-console.log('Going to execute promise')
-var p = new Promise(function(resolve, reject){
-  console.log('Inside Promise')
-  setTimeout(function(){
-    console.log('Going to resolve Promise')
-    reject('3s crossed')
-  })
-  console.log('Still Inside Promise and not resolved yet')
-})
-p.then(function(res){
-  console.log('Promise resolved with value', res)
-})
-.catch(function(e){
-  console.log('Promise rejected with value', e)
-})
-console.log('Async code is executed')
-
-
 // Service Worker Snippets
 self.addEventListener('fetch', function(event) {
   event.respondWith(
@@ -31,18 +12,37 @@ self.addEventListener('fetch', function(event) {
   );
 });
 
-Cache then network strategy
+var networkDataReceived = false;
+
+startSpinner();
+
+// fetch fresh data
+var networkUpdate = fetch('/data.json').then(function(response) {
+  return response.json();
+}).then(function(data) {
+  networkDataReceived = true;
+  updatePage();
+});
+
+// fetch cached data
+caches.match('/data.json').then(function(response) {
+  if (!response) throw Error("No data");
+  return response.json();
+}).then(function(data) {
+  // don't overwrite newer network data
+  if (!networkDataReceived) {
+    updatePage(data);
+  }
+}).catch(function() {
+  // we didn't get cached data, the network is our last hope:
+  return networkUpdate;
+}).catch(showErrorMessage).then(stopSpinner);
+
+
 self.addEventListener('fetch', function(e) {
   console.log('[Service Worker] Fetch', e.request.url);
   var dataUrl = 'https://www.backend-app.com/api/';
   if (e.request.url.indexOf(dataUrl) > -1) {
-    /*
-     * When the request URL contains dataUrl, the app is asking for fresh
-     * weather data. In this case, the service worker always goes to the
-     * network and then caches the response. This is called the "Cache then
-     * network" strategy:
-     * https://jakearchibald.com/2014/offline-cookbook/#cache-then-network
-     */
     e.respondWith(
       caches.open(dataCacheName).then(function(cache) {
         return fetch(e.request).then(function(response){

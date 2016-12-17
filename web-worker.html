@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+</head>
+<body>
+  <h4>Fibonacci Series:</h4>
+  <h6>Enter value of n: <input type="text" name="" value="0" id="input"></h6>
+  Result: <h5 id='result'></h5>
+  <button type="button" name="button" onclick="startWorker()">Submit</button>
+  <button type="button" name="button" onclick="stopWorker()">Terminate Woker</button>
+
+
+
+
+
+  <script type="text/javascript">
+    var myWorker = undefined;
+
+    if(window.Worker){
+      console.log('Browser Support Web Worker.');
+
+      console.log('Going to start Worker.');
+      myWorker = new Worker('web-worker.js');
+      myWorker.onerror = function (e) {
+        console.log("Error Occured.");
+      }
+    }
+
+
+    function startWorker() {
+      var n = document.getElementById('input').value;
+      myWorker.postMessage(n)
+      myWorker.onmessage = function (e) {
+        console.log("Main I/O Context:");
+        console.log('Message Received from Web Worker.');
+        wait(8000)
+        document.getElementById('result').innerHTML = e.data;
+      }
+    }
+    function stopWorker() {
+      console.log('Web Worker terminated.');
+      myWorker.terminate()
+    }
+
+    function wait(ms){
+       var start = new Date().getTime();
+       var end = start;
+       while(end < start + ms) {
+         end = new Date().getTime();
+      }
+    }
+
+  </script>
+</body>
+</html>
